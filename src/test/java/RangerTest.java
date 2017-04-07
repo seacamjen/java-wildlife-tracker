@@ -89,6 +89,15 @@ public class RangerTest {
   }
 
   @Test
+  public void findByPhone_returnsRangerWithSamePhone_secondRanger() {
+    Ranger testRanger = new Ranger(true, "Randy", "822-234-9873", 234);
+    testRanger.save();
+    Ranger otherRanger = new Ranger(true, "Randy", "802-234-9873", 234);
+    otherRanger.save();
+    assertEquals(otherRanger.getPhone(), Ranger.find(otherRanger.getId()).getPhone());
+  }
+
+  @Test
   public void update_updatesRangerNamePhone_true() {
     Ranger testRanger = new Ranger(true, "Randy", "802-234-9873", 234);
     testRanger.save();

@@ -80,6 +80,17 @@ public class Civilian extends Viewers implements Person {
     }
   }
 
+  public static Civilian findbyPhone(String phone) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM viewers WHERE phone = :phone;";
+      Civilian civilian = con.createQuery(sql)
+        .addParameter("phone", phone)
+        .throwOnMappingFailure(false)
+        .executeAndFetchFirst(Civilian.class);
+      return civilian;
+    }
+  }
+
   public void updateCivilian(String name, String phone) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "UPDATE viewers SET (name, phone) = (:name, :phone) WHERE id=:id;";

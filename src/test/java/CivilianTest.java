@@ -83,6 +83,15 @@ public class CivilianTest {
   }
 
   @Test
+  public void findByPhone_returnsCivilianWithSameId_secondCivilian() {
+    Civilian testCivilian = new Civilian(false, "Randy", "802-234-9873");
+    testCivilian.save();
+    Civilian otherCivilian = new Civilian(false, "Randy", "802-234-9873");
+    otherCivilian.save();
+    assertEquals(otherCivilian.getPhone(), Civilian.find(otherCivilian.getId()).getPhone());
+  }
+
+  @Test
   public void update_updatesCivilianNamePhone_true() {
     Civilian testCivilian = new Civilian(false, "Randy", "802-234-9873");
     testCivilian.save();

@@ -98,4 +98,14 @@ public class Ranger extends Viewers implements Person {
         .executeUpdate();
     }
   }
+
+  public static Ranger findbyPhone(String phone) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM viewers WHERE phone = :phone;";
+      Ranger ranger = con.createQuery(sql)
+        .addParameter("phone", phone)
+        .executeAndFetchFirst(Ranger.class);
+      return ranger;
+    }
+  }
 }

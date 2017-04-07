@@ -1,0 +1,73 @@
+<!--viewer.vtl-->
+<h1>Report a Wildlife Sighting</h1>
+
+<h3><a href="/animal/new">Add Animal to System</a></h3>
+<hr>
+
+<h3> Report Non-Endangered Animal Sighting </h3>
+<form action="/sighting" method="post">
+  #if($animals.size() >= 0)
+    <label>Select Animal</label>
+    <select name="animalSelected">
+      #foreach($animal in $animals)
+        <option value="$animal.getId()">$animal.getName()</option>
+      #end
+    </select>
+
+    <label>Location</label>
+    <input type="text" name="latLong">
+    <label>Your Name</label>
+    <input type="text" name="rangerName">
+    <button type="submit">Submit Report</button>
+  #end
+</form>
+
+<hr>
+
+<h3> Report Endangered Animal Sighting </h3>
+<form action="/endangered_sighting" method="post">
+  #if($endangeredAnimals.size() >= 0)
+    <label>Select Endangered Animal</label>
+    <select name="endangeredAnimalSelected">
+      #foreach($endangered_animal in $endangeredAnimals)
+        <option value="$endangered_animal.getId()">$endangered_animal.getName()</option>
+      #end
+    </select>
+
+    <label>Location</label>
+    <input type="text" name="latLong">
+    <label>Your Name</label>
+    <input type="text" name="rangerName">
+    <button type="submit">Submit Report</button>
+  #end
+</form>
+
+
+<h3>Endangered Animal Sightings</h3>
+
+#if ($endangeredAnimals.size() == 0)
+  <a href="/animal/new">Add Animal to Database to Report a Sighting</a>
+#else
+  #foreach ($endangeredAnimal in $endangeredAnimals)
+    <a href="/endangered_animal/$endangeredAnimal.getId()" class="thumbnail">
+      <h4>$endangeredAnimal.getName()</h4>
+      <h4>$endangeredAnimal.getSightings().size() Reported Sighting(s)</h4>
+      <p>Click for details</p>
+    </a>
+  #end
+#end
+
+<h3>All Animals & Sightings</h3>
+#if ($animals.size() == 0)
+  <a href="/animal/new">Add Animal to Database to Report a Sighting</a>
+#else
+  #foreach ($animal in $animals)
+    <a href="/animal/$animal.getId()" class="thumbnail">
+      <h4>$animal.getName()</h4>
+      <!-- <h4>$animal.getSightings().size() Reported Sighting(s)</h4> -->
+      <p>Click for details</p>
+    </a>
+  #end
+#end
+
+<!--viewer.vtl-->
