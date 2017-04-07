@@ -72,7 +72,7 @@ public class AnimalTest {
     assertEquals(testAnimal.getId(), savedAnimal.getId());
   }
 
-  @Test //specific to animal class 
+  @Test //specific to animal class also need for endangeredanimal
   public void all_returnsAllInstancesOfAnimal_false() {
     Animal firstAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     firstAnimal.save();
