@@ -9,4 +9,16 @@ public class Civilian extends Viewers implements Person {
     this.name = name;
     this.phone = phone;
   }
+
+  public boolean getRanger() {
+    return ranger;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
 }

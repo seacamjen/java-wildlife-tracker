@@ -11,7 +11,25 @@ public class CivilianTest {
 
   @Test
   public void civilian_instantiatesCorrectly_true() {
-    Civilian testcivilian = new Civilian("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    Civilian testcivilian = new Civilian(true, "Randy", "802-234-9873");
     assertEquals(true, testcivilian instanceof Civilian);
+  }
+
+  @Test
+  public void getRanger_instantiatesCorrectly_boolean() {
+    Civilian testcivilian = new Civilian(true, "Randy", "802-234-9873");
+    assertEquals(true, testcivilian.getRanger());
+  }
+
+  @Test
+  public void getName_instantiatesCorrectly_String() {
+    Civilian testcivilian = new Civilian(true, "Randy", "802-234-9873");
+    assertEquals("Randy", testcivilian.getName());
+  }
+
+  @Test
+  public void getPhone_instantiatesCorrectly_String() {
+    Civilian testcivilian = new Civilian(true, "Randy", "802-234-9873");
+    assertEquals("802-234-9873", testcivilian.getPhone());
   }
 }
