@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.text.DateFormat;
 import java.util.Date;
+import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 public class SightingTest {
 
@@ -20,6 +22,55 @@ public class SightingTest {
     testCivilian.save();
     Sighting testSighting = new Sighting(testAnimal.getId(), testCivilian.getId(), "45.472428, -121.946466");
     assertEquals(true, testSighting instanceof Sighting);
+  }
+
+  // @Test
+  // public void getId_instantiatesAndReturnsId() {
+  //   Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+  //   testAnimal.save();
+  //   Civilian testCivilian = new Civilian(false, "Randy", "802-234-9873");
+  //   testCivilian.save();
+  //   Sighting testSighting = new Sighting(testAnimal.getId(), testCivilian.getId(), "45.472428, -121.946466");
+  //   assertEquals(blah)
+  // }
+
+  @Test
+  public void getAnimalId_instantiatesAndReturnsId() {
+    Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testAnimal.save();
+    Civilian testCivilian = new Civilian(false, "Randy", "802-234-9873");
+    testCivilian.save();
+    Sighting testSighting = new Sighting(testAnimal.getId(), testCivilian.getId(), "45.472428, -121.946466");
+    assertEquals(testAnimal.getId(), testSighting.getAnimalId());
+  }
+
+  @Test
+  public void getViewerId_instantiatesAndReturnsId() {
+    Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testAnimal.save();
+    Civilian testCivilian = new Civilian(false, "Randy", "802-234-9873");
+    testCivilian.save();
+    Sighting testSighting = new Sighting(testAnimal.getId(), testCivilian.getId(), "45.472428, -121.946466");
+    assertEquals(testCivilian.getId(), testSighting.getViewerId());
+  }
+
+  @Test
+  public void getLocation_instantiatesAndReturnsId() {
+    Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testAnimal.save();
+    Civilian testCivilian = new Civilian(false, "Randy", "802-234-9873");
+    testCivilian.save();
+    Sighting testSighting = new Sighting(testAnimal.getId(), testCivilian.getId(), "45.472428, -121.946466");
+    assertEquals("45.472428, -121.946466", testSighting.getLocation());
+  }
+
+  @Test
+  public void getTime_instantiatesAndReturnsId() {
+    Sighting testSighting = new Sighting(1, 2, "45.472428, -121.946466");
+    testSighting.save();
+    Timestamp savedSighting = Sighting.find(testSighting.getId()).getSightingTime();
+    Timestamp rightNow = new Timestamp(new Date().getTime());
+    assertEquals(rightNow.getDay(), savedSighting.getDay());
   }
 
   @Test

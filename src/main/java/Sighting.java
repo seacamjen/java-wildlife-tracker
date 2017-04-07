@@ -34,7 +34,7 @@ public class Sighting {
     return viewer_id;
   }
 
-  public Timestamp getTime() {
+  public Timestamp getSightingTime() {
     return time;
   }
 
