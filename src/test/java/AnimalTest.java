@@ -10,55 +10,55 @@ public class AnimalTest {
   public DatabaseRule database = new DatabaseRule();
 
   @Test
-  public void animal_instantiatesCorrectly_false() {
+  public void animal_instantiatesCorrectly_true() {
     Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     assertEquals(true, testAnimal instanceof Animal);
   }
 
   @Test
-  public void getName_animalInstantiatesWithName_Deer() {
+  public void getName_animalInstantiatesWithName_String() {
     Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     assertEquals("Deer", testAnimal.getName());
   }
 
   @Test
-  public void getHealth_animalInstantiatesWithHealth_Deer() {
+  public void getHealth_animalInstantiatesWithHealth_String() {
     Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     assertEquals("healthy", testAnimal.getHealth());
   }
 
   @Test
-  public void getAge_animalInstantiatesWithAge_Deer() {
+  public void getAge_animalInstantiatesWithAge_String() {
     Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     assertEquals("3", testAnimal.getAge());
   }
 
   @Test
-  public void getColor_animalInstantiatesWithColor_Deer() {
+  public void getColor_animalInstantiatesWithColor_String() {
     Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     assertEquals("brown", testAnimal.getColor());
   }
 
   @Test
-  public void getDescription_animalInstantiatesWithDescription_Deer() {
+  public void getDescription_animalInstantiatesWithDescription_String() {
     Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     assertEquals("white spots", testAnimal.getDescription());
   }
 
   @Test
-  public void getGender_animalInstantiatesWithGender_Deer() {
+  public void getGender_animalInstantiatesWithGender_String() {
     Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     assertEquals("Male", testAnimal.getGender());
   }
 
   @Test
-  public void getEndangered_animalInstantiatesWithEnda_Deer() {
+  public void getEndangered_animalInstantiatesWithEnda_String() {
     Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     assertEquals(false, testAnimal.getEndangered());
   }
 
   @Test
-  public void equals_returnsTrueIfNameIsTheSame_false() {
+  public void equals_returnsTrueIfNameIsTheSame_true() {
     Animal firstAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     Animal anotherAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     assertTrue(firstAnimal.equals(anotherAnimal));
