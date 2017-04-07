@@ -3,9 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Civilian extends Viewers implements Person {
+  public static final boolean CIVILIAN_RANGER_STATUS = false;
 
   public Civilian(boolean ranger, String name, String phone){
-    this.ranger = ranger;
+    ranger = CIVILIAN_RANGER_STATUS;
     this.name = name;
     this.phone = phone;
     this.id = id;

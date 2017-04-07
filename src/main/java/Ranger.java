@@ -54,6 +54,9 @@ public class Ranger extends Viewers implements Person {
   }
 
   public void save() {
+    if ((ranger == true) && (ranger_number < 1)) {
+      throw new IllegalArgumentException("If you are a ranger you must enter your ranger number.");
+    }
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO viewers (ranger, name, phone, ranger_number) VALUES (:ranger, :name, :phone, :ranger_number);";
       this.id = (int) con.createQuery(sql, true)
