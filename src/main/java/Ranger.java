@@ -2,12 +2,14 @@ import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Civilian extends Viewers implements Person {
+public class Ranger extends Viewers implements Person {
+  public int ranger_number;
 
-  public Civilian(boolean ranger, String name, String phone){
+  public Ranger(boolean ranger, String name, String phone, int ranger_number){
     this.ranger = ranger;
     this.name = name;
     this.phone = phone;
+    this.ranger_number = ranger_number;
     this.id = id;
   }
 
@@ -27,33 +29,38 @@ public class Civilian extends Viewers implements Person {
     return id;
   }
 
+  public int getRangerNumber() {
+    return ranger_number;
+  }
+
   @Override
-  public boolean equals(Object otherCivilian) {
-    if(!(otherCivilian instanceof Civilian)) {
+  public boolean equals(Object otherRanger) {
+    if(!(otherRanger instanceof Ranger)) {
       return false;
     } else {
-      Civilian newCivilian = (Civilian) otherCivilian;
-      return this.getName().equals(newCivilian.getName()) &&
-             this.getRanger() == newCivilian.getRanger() && this.getPhone().equals(newCivilian.getPhone());
+      Ranger newRanger = (Ranger) otherRanger;
+      return this.getName().equals(newRanger.getName()) &&
+             this.getRanger() == newRanger.getRanger() && this.getPhone().equals(newRanger.getPhone()) &&
+             this.getRangerNumber() == newRanger.getRangerNumber();
     }
   }
 
-  public static List<Civilian> all() {
+  public static List<Ranger> all() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM viewers WHERE ranger = false;";
+      String sql = "SELECT * FROM viewers WHERE ranger = true;";
       return con.createQuery(sql)
-        .throwOnMappingFailure(false)
-        .executeAndFetch(Civilian.class);
+        .executeAndFetch(Ranger.class);
     }
   }
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO viewers (ranger, name, phone) VALUES (:ranger, :name, :phone);";
+      String sql = "INSERT INTO viewers (ranger, name, phone, ranger_number) VALUES (:ranger, :name, :phone, :ranger_number);";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("ranger", ranger)
         .addParameter("name", name)
         .addParameter("phone", phone)
+        .addParameter("ranger_number", ranger_number)
         .executeUpdate()
         .getKey();
     }
@@ -68,25 +75,23 @@ public class Civilian extends Viewers implements Person {
     }
   }
 
-  public static Civilian find(int id) {
+  public static Ranger find(int id) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM viewers WHERE id=:id;";
-      Civilian civilian = con.createQuery(sql)
+      Ranger ranger = con.createQuery(sql)
         .addParameter("id", id)
-        .throwOnMappingFailure(false)
-        .executeAndFetchFirst(Civilian.class);
-      return civilian;
+        .executeAndFetchFirst(Ranger.class);
+      return ranger;
     }
   }
 
-  public void updateCivilian(String name, String phone) {
+  public void updateRanger(String name, String phone) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "UPDATE viewers SET (name, phone) = (:name, :phone) WHERE id=:id;";
       con.createQuery(sql)
         .addParameter("id", id)
         .addParameter("name", name)
         .addParameter("phone", phone)
-        .throwOnMappingFailure(false)
         .executeUpdate();
     }
   }

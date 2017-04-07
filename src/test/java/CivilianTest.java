@@ -74,4 +74,13 @@ public class CivilianTest {
     otherCivilian.save();
     assertEquals(otherCivilian, Civilian.find(otherCivilian.getId()));
   }
+
+  @Test
+  public void update_updatesCivilianNamePhone_true() {
+    Civilian testCivilian = new Civilian(false, "Randy", "802-234-9873");
+    testCivilian.save();
+    testCivilian.updateCivilian("Randy Joe", "909-234-2212");
+    assertEquals("Randy Joe", Civilian.find(testCivilian.getId()).getName());
+    assertEquals("909-234-2212", Civilian.find(testCivilian.getId()).getPhone());
+  }
 }

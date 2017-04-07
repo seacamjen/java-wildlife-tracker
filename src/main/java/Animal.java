@@ -103,7 +103,7 @@ public class Animal extends Wildlife {
     }
   }
 
-  public void updateName(String health) {
+  public void updateName(String name) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "UPDATE wildlife_animals SET name=:name WHERE id=:id;";
       con.createQuery(sql)
