@@ -123,8 +123,31 @@ public class AnimalTest {
   }
 
   @Test
-  public void find_returnsNullWhenNoAnimalFound_null() {
-    assertTrue(Animal.find(999) == null);
+  public void update_updatesDescriptionAttribute_true() {
+    Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testAnimal.save();
+    testAnimal.updateDescription("broken foot");
+    assertEquals("broken foot", Animal.find(testAnimal.getId()).getDescription());
   }
+
+  @Test
+  public void getSightings_returnsAllSightingsForSpecificWildlife_true() {
+    Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testAnimal.save();
+    Sighting testSighting1 = new Sighting(testAnimal.getId(), "45.472428, -121.946466", "Ranger Avery");
+    testSighting1.save();
+    Sighting testSighting2 = new Sighting(testAnimal.getId(), "47.472428, -123.946466", "Ranger Charles");
+    testSighting2.save();
+    Sighting testSighting3 = new Sighting(900, "47.472428, -123.946466", "Ranger Charles");
+    testSighting3.save();
+    Sighting [] sightings = new Sightings [] {testSighting1, testSighting2};
+    assertTrue(Animal.getSightings().containsAll(Arrays.asList(sightings)));
+    assertFalse(Animal.getSightings().contains(testSighting3));
+  }
+
+  // @Test //dont know purpose of this test yet
+  // public void find_returnsNullWhenNoAnimalFound_null() {
+  //   assertTrue(Animal.find(999) == null);
+  // }
 
 }
