@@ -34,6 +34,13 @@ public class RangerTest {
   }
 
   @Test
+  public void getId_instantiatesCorrectly_String() {
+    Ranger testRanger = new Ranger(true, "Randy", "802-234-9873", 234);
+    testRanger.save();
+    assertTrue(testRanger.getId() > 0);
+  }
+
+  @Test
   public void getRangerNumber_instantiatesCorrectly_String() {
     Ranger testRanger = new Ranger(true, "Randy", "802-234-9873", 234);
     assertEquals(234, testRanger.getRangerNumber());

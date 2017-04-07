@@ -52,6 +52,13 @@ public class EndangeredAnimalTest {
   }
 
   @Test
+  public void getId_EndangeredAnimalInstantiatesWithId_String() {
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testEndangeredAnimal.save();
+    assertTrue(testEndangeredAnimal.getId() > 0);
+  }
+
+  @Test
   public void getEndangered_EndangeredAnimalInstantiatesWithEnda_boolean() {
     EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     assertEquals(false, testEndangeredAnimal.getEndangered());

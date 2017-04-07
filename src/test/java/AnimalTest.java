@@ -58,6 +58,13 @@ public class AnimalTest {
   }
 
   @Test
+  public void getId_animalInstantiatesWithEnda_String() {
+    Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testAnimal.save();
+    assertTrue(testAnimal.getId() > 0);
+  }
+
+  @Test
   public void equals_returnsTrueIfNameIsTheSame_true() {
     Animal firstAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     Animal anotherAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
@@ -131,7 +138,7 @@ public class AnimalTest {
     assertTrue(Animal.all().get(1).equals(secondAnimal));
   }
 
-  @Test 
+  @Test
   public void find_returnsNullWhenNoAnimalFound_null() {
     assertTrue(Animal.find(999) == null);
   }

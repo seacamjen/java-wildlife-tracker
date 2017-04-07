@@ -24,15 +24,12 @@ public class SightingTest {
     assertEquals(true, testSighting instanceof Sighting);
   }
 
-  // @Test
-  // public void getId_instantiatesAndReturnsId() {
-  //   Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
-  //   testAnimal.save();
-  //   Civilian testCivilian = new Civilian(false, "Randy", "802-234-9873");
-  //   testCivilian.save();
-  //   Sighting testSighting = new Sighting(testAnimal.getId(), testCivilian.getId(), "45.472428, -121.946466");
-  //   assertEquals(blah)
-  // }
+  @Test
+  public void getId_instantiatesAndReturnsId() {
+    Sighting testSighting = new Sighting(1, 2, "45.472428, -121.946466");
+    testSighting.save();
+    assertTrue(testSighting.getId() > 0);
+  }
 
   @Test
   public void getAnimalId_instantiatesAndReturnsId() {

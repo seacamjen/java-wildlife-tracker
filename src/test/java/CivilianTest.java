@@ -34,6 +34,13 @@ public class CivilianTest {
   }
 
   @Test
+  public void getId_instantiatesCorrectly() {
+    Civilian testcivilian = new Civilian(false, "Randy", "802-234-9873");
+    testcivilian.save();
+    assertTrue(testcivilian.getId() > 0);
+  }
+
+  @Test
   public void all_returnsAllInstancesOfCivilian_true() {
     Civilian testCivilian = new Civilian(false, "Randy", "802-234-9873");
     testCivilian.save();
