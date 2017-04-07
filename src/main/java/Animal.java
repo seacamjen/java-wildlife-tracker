@@ -2,21 +2,16 @@ import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Animal {
-  public String name;
-  public int id;
+public class Animal extends Wildlife{
 
-  public Animal(String name) {
+
+  public Animal(String name, String health, String age, String color, String description, String gender) {
     this.name = name;
     this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public int getId() {
-    return id;
+    this.health = health;
+    this.age = age;
+    this.color = color;
+    this.gender = gender;
   }
 
   @Override
