@@ -5,14 +5,15 @@ import java.util.Arrays;
 
 public class Sighting {
   private int animal_id;
+  private int viewer_id;
   private String location;
-  private String ranger_name;
+  private Timestamp time;
   private int id;
 
-  public Sighting(int animal_id, String location, String ranger_name) {
+  public Sighting(int animal_id, int viewer_id, String location) {
     this.animal_id = animal_id;
+    this.viewer_id = viewer_id;
     this.location = location;
-    this.ranger_name = ranger_name;
     this.id = id;
   }
 
@@ -28,8 +29,8 @@ public class Sighting {
     return location;
   }
 
-  public String getRangerName() {
-    return ranger_name;
+  public int getViewerId() {
+    return viewer_id;
   }
 
   @Override
