@@ -83,46 +83,57 @@ public class SightingTest {
     Sighting anotherSighting = new Sighting(testAnimal.getId(), testCivilian.getId(), "45.472428, -121.946466");
     assertTrue(testSighting.equals(anotherSighting));
   }
-//
-//   @Test
-//   public void save_insertsObjectIntoDatabase_Sighting() {
-//     Animal testAnimal = new Animal("Deer");
-//     testAnimal.save();
-//     Sighting testSighting = new Sighting (testAnimal.getId(), "45.472428, -121.946466", "Ranger Avery");
-//     testSighting.save();
-//     assertEquals(true, Sighting.all().get(0).equals(testSighting));
-//   }
-//
-//   @Test
-//   public void all_returnsAllInstancesOfSighting_true() {
-//     Animal testAnimal = new Animal("Deer");
-//     testAnimal.save();
-//     Sighting testSighting = new Sighting (testAnimal.getId(), "45.472428, -121.946466", "Ranger Avery");
-//     testSighting.save();
-//     Animal secondTestAnimal = new Animal("Badger");
-//     secondTestAnimal.save();
-//     Sighting secondTestSighting = new Sighting (testAnimal.getId(), "45.472428, -121.946466", "Ranger Reese");
-//     secondTestSighting.save();
-//     assertEquals(true, Sighting.all().get(0).equals(testSighting));
-//     assertEquals(true, Sighting.all().get(1).equals(secondTestSighting));
-//   }
-//
-//   @Test
-//   public void find_returnsSightingWithSameId_secondSighting() {
-//     Animal testAnimal = new Animal("Deer");
-//     testAnimal.save();
-//     Sighting testSighting = new Sighting (testAnimal.getId(), "45.472428, -121.946466", "Ranger Avery");
-//     testSighting.save();
-//     Animal secondTestAnimal = new Animal("Badger");
-//     secondTestAnimal.save();
-//     Sighting secondTestSighting = new Sighting (testAnimal.getId(), "45.472428, -121.946466", "Ranger Reese");
-//     secondTestSighting.save();
-//     assertEquals(Sighting.find(secondTestSighting.getId()), secondTestSighting);
-//   }
-//
-//   @Test
-//   public void find_returnsNullWhenNoAnimalFound_null() {
-//     assertTrue(Animal.find(999) == null);
-//   }
+
+  @Test
+  public void save_insertsObjectIntoDatabase_true() {
+    Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testAnimal.save();
+    Civilian testCivilian = new Civilian(false, "Randy", "802-234-9873");
+    testCivilian.save();
+    Sighting testSighting = new Sighting(testAnimal.getId(), testCivilian.getId(), "45.472428, -121.946466");
+    testSighting.save();
+    Sighting savedSighting = Sighting.all().get(0);
+    assertEquals(savedSighting.getId(), testSighting.getId());
+  }
+
+  @Test
+  public void all_returnsAllInstancesOfSighting_true() {
+    Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testAnimal.save();
+    Civilian testCivilian = new Civilian(false, "Randy", "802-234-9873");
+    testCivilian.save();
+    Sighting testSighting = new Sighting(testAnimal.getId(), testCivilian.getId(), "45.472428, -121.946466");
+    testSighting.save();
+    Animal testAnimal1 = new Animal("Goose", "healthy", "Old", "brown", "white spots", "Male", false);
+    testAnimal1.save();
+    Civilian testCivilian1 = new Civilian(false, "Bobby", "802-234-9873");
+    testCivilian1.save();
+    Sighting testSighting1 = new Sighting(testAnimal.getId(), testCivilian.getId(), "45.472428, -121.946466");
+    testSighting1.save();
+    assertEquals(true, Sighting.all().get(0).equals(testSighting));
+    assertEquals(true, Sighting.all().get(1).equals(testSighting1));
+  }
+
+  @Test
+  public void find_returnsSightingWithSameId_secondSighting() {
+    Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testAnimal.save();
+    Civilian testCivilian = new Civilian(false, "Randy", "802-234-9873");
+    testCivilian.save();
+    Sighting testSighting = new Sighting(testAnimal.getId(), testCivilian.getId(), "45.472428, -121.946466");
+    testSighting.save();
+    Animal testAnimal1 = new Animal("Goose", "healthy", "Old", "brown", "white spots", "Male", false);
+    testAnimal1.save();
+    Civilian testCivilian1 = new Civilian(false, "Bobby", "802-234-9873");
+    testCivilian1.save();
+    Sighting testSighting1 = new Sighting(testAnimal.getId(), testCivilian.getId(), "45.472428, -121.946466");
+    testSighting1.save();
+    assertEquals(testSighting1, Sighting.find(testSighting1.getId()));
+  }
+
+  @Test
+  public void find_returnsNullWhenNoAnimalFound_null() {
+    assertTrue(Animal.find(999) == null);
+  }
 
 }

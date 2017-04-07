@@ -55,7 +55,6 @@ public class Sighting {
         .addParameter("location", this.location)
         .addParameter("animal_id", this.animal_id)
         .addParameter("viewer_id", this.viewer_id)
-        .throwOnMappingFailure(false)
         .executeUpdate()
         .getKey();
     }

@@ -131,9 +131,9 @@ public class AnimalTest {
     assertTrue(Animal.all().get(1).equals(secondAnimal));
   }
 
-  // @Test //dont know purpose of this test yet
-  // public void find_returnsNullWhenNoAnimalFound_null() {
-  //   assertTrue(Animal.find(999) == null);
-  // }
+  @Test 
+  public void find_returnsNullWhenNoAnimalFound_null() {
+    assertTrue(Animal.find(999) == null);
+  }
 
 }
