@@ -72,16 +72,6 @@ public class AnimalTest {
     assertEquals(testAnimal.getId(), savedAnimal.getId());
   }
 
-  @Test //specific to animal class also need for endangeredanimal
-  public void all_returnsAllInstancesOfAnimal_false() {
-    Animal firstAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
-    firstAnimal.save();
-    Animal secondAnimal = new Animal("Black Bear", "Ill", "5", "black", "injured foot", "Female", true);
-    secondAnimal.save();
-    assertEquals(true, Animal.all().get(0).equals(firstAnimal));
-    assertEquals(true, Animal.all().get(1).equals(secondAnimal));
-  }
-
   @Test
   public void find_returnsAnimalWithSameId_secondAnimal() {
     Animal firstAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
@@ -130,19 +120,15 @@ public class AnimalTest {
     assertEquals("broken foot", Animal.find(testAnimal.getId()).getDescription());
   }
 
-  @Test
-  public void getSightings_returnsAllSightingsForSpecificWildlife_true() {
-    Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
-    testAnimal.save();
-    Sighting testSighting1 = new Sighting(testAnimal.getId(), "45.472428, -121.946466", "Ranger Avery");
-    testSighting1.save();
-    Sighting testSighting2 = new Sighting(testAnimal.getId(), "47.472428, -123.946466", "Ranger Charles");
-    testSighting2.save();
-    Sighting testSighting3 = new Sighting(900, "47.472428, -123.946466", "Ranger Charles");
-    testSighting3.save();
-    Sighting [] sightings = new Sightings [] {testSighting1, testSighting2};
-    assertTrue(Animal.getSightings().containsAll(Arrays.asList(sightings)));
-    assertFalse(Animal.getSightings().contains(testSighting3));
+
+  @Test //specific to animal class also need for endangeredanimal
+  public void all_returnsAllInstancesOfAnimal_true() {
+    Animal firstAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    firstAnimal.save();
+    Animal secondAnimal = new Animal("Black Bear", "Ill", "5", "black", "injured foot", "Female", false);
+    secondAnimal.save();
+    assertTrue(Animal.all().get(0).equals(firstAnimal));
+    assertTrue(Animal.all().get(1).equals(secondAnimal));
   }
 
   // @Test //dont know purpose of this test yet
