@@ -1,6 +1,7 @@
 import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Ranger extends Viewers implements Person {
   public int ranger_number;
@@ -108,4 +109,14 @@ public class Ranger extends Viewers implements Person {
       return ranger;
     }
   }
+//add a test
+  public static List<Animal> getAnimals(int id) {
+   try (Connection con = DB.sql2o.open()) {
+     String sql = "SELECT wildlife_animals.name, wildlife_animals.description, wildlife_animals.health, wildlife_animals.gender FROM wildlife_animals INNER JOIN sightings ON wildlife_animals.id = sightings.animal_id INNER JOIN viewers ON sightings.viewer_id = viewers.id WHERE viewer_id = :id;";
+     return con.createQuery(sql)
+       .addParameter("id", id)
+       .executeAndFetch(Animal.class);
+    }
+  }
+
 }

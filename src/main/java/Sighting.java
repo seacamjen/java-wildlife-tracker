@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Map;
 
 public class Sighting {
   private int animal_id;

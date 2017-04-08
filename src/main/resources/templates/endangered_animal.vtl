@@ -1,16 +1,45 @@
-<h4><a href="/">Home</a></h4>
+<!-- endangered_animal.vtl -->
+<div class="row">
+  <div class="col-md-3">
+    <h1>Species: $endangeredAnimal.getName()</h1>
+    <h3>Health: $endangeredAnimal.getHealth()</h3>
+    <h3>Gender: $endangeredAnimal.getGender()</h3>
+    <h3>Age: $endangeredAnimal.getAge()</h3>
+    <h3>Description: $endangeredAnimal.getDescription()</h3>
+    <h3>Color: $endangeredAnimal.getColor()</h3>
+    <h3>ID: $endangeredAnimal.getId()</h3>
+  </div>
+  <div class="col-md-2">
+    <h2>Sightings:</h2>
+    #foreach($sighting in $endangeredAnimal.getSightingDetails($endangeredAnimal.getId()))
+      <h4>Location: $sighting.getLocation()</h4>
+      <h4>Reported on: $datetime.format($sighting.getSightingTime())</h4>
+      <hr>
+    #end
+  </div>
+  <div class="col-md-7">
+    <div class="row">
+      <h2>Viewers:</h2>
+      #foreach ($person in $endangeredAnimal.getRangers($endangeredAnimal.getId()))
+        <div class="col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h6>$person.getName()
+                #if ($person.getRanger())
+                  <img src="/images/rangericon.png" alt="ranger badge">
+                #end
+              </h6>
+            </div>
+            <div class="panel-body">
+              <p>
+                Phone: <br> $person.getPhone()
 
-<h1>$endangeredAnimal.getName()</h1>
-<h3>ID: $endangeredAnimal.getId()</h3>
-
-#if($endangeredAnimal.getSightings().size() == 0)
-  <p>To report a sighting, please visit the <a href="/">home page</a>.</p>
-#else
-  #foreach($sighting in $endangeredAnimal.getSightings())
-    Location: <strong>$sighting.getLocation()</strong>
-    Health: $endangeredAnimal.getHealth()
-    Age: $endangeredAnimal.getAge()
-    Reported by: $sighting.getRangerName()
-    ID: $sighting.getId()
-  #end
-#end
+              </p>
+            </div>
+          </div>
+        </div>
+      #end
+    </div>
+  </div>
+</div>
+<!-- endangered_animal.vtl -->

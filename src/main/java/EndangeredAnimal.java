@@ -149,5 +149,23 @@ public class EndangeredAnimal extends Wildlife {
         .executeAndFetch(EndangeredAnimal.class);
     }
   }
+//write test
+  public static List<Ranger> getRangers(int id) {
+   try (Connection con = DB.sql2o.open()) {
+     String sql = "SELECT viewers.name, viewers.phone, viewers.ranger FROM viewers INNER JOIN sightings ON viewers.id = sightings.viewer_id INNER JOIN wildlife_animals ON sightings.animal_id = wildlife_animals.id WHERE wildlife_animals.id = :id;";
+     return con.createQuery(sql)
+       .addParameter("id", id)
+       .executeAndFetch(Ranger.class);
+    }
+  }
+
+  public static Integer getTotalSightings(int id) {
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "SELECT COUNT (*) FROM sightings WHERE animal_id = :id;";
+      return con.createQuery(sql)
+       .addParameter("id", id)
+       .executeScalar(Integer.class);
+     }
+  }
 
 }
