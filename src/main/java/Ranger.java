@@ -99,7 +99,7 @@ public class Ranger extends Viewers implements Person {
     }
   }
 
-  public static Ranger findbyPhone(String phone) {
+  public static Ranger findByPhone(String phone) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM viewers WHERE phone = :phone;";
       Ranger ranger = con.createQuery(sql)

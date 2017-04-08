@@ -80,7 +80,7 @@ public class Civilian extends Viewers implements Person {
     }
   }
 
-  public static Civilian findbyPhone(String phone) {
+  public static Civilian findByPhone(String phone) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM viewers WHERE phone = :phone;";
       Civilian civilian = con.createQuery(sql)
