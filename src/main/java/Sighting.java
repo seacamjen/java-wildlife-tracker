@@ -83,32 +83,4 @@ public class Sighting {
       return null;
     }
   }
-
-  // public List<Sighting> getAnimalSightings() {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "SELECT viewers.name FROM viewers INNER JOIN sightings ON viewers.id = sightings.viewer_id INNER JOIN wildlife_animals ON sightings.animal_id = wildlife_animals.id WHERE animal_id = :animal_id;";
-  //     return con.createQuery(sql)
-  //       .addParameter("animal_id", animal_id)
-  //       .executeAndFetch(Sighting.class);
-  //   }
-  // }
-  //
-  // public List<Sighting> getViewerSightings() {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "SELECT wildlife_animals.name FROM wildlife_animals INNER JOIN sightings ON wildlife_animals.id = sightings.animal_id INNER JOIN viewers ON sightings.viewer_id = viewers.id WHERE viewer_id = :viewer_id;";
-  //     return con.createQuery(sql)
-  //       .addParameter("viewer_id", viewer_id)
-  //       .executeAndFetch(Sighting.class);
-  //   }
-  // }
-  //
-  // public List<Sighting> getViewerSightingsNewestFirst() {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "SELECT wildlife_animals.name FROM wildlife_animals INNER JOIN sightings ON wildlife_animals.id = sightings.animal_id INNER JOIN viewers ON sightings.viewer_id = viewers.id WHERE viewer_id = :viewer_id ORDER by sightings.time DESC;";
-  //     return con.createQuery(sql)
-  //       .addParameter("viewer_id", viewer_id)
-  //       .executeAndFetch(Sighting.class);
-  //   }
-  // }
-
 }
