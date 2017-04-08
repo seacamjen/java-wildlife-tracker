@@ -23,17 +23,17 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("/civilians/:id", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      Civilian civilian =  Civilian.find(Integer.parseInt(request.params(":id")));
-      model.put("user", request.session().attribute("user"));
-      model.put("animals", Animal.all());
-      model.put("endangeredAnimals", EndangeredAnimal.all());
-      model.put("sightings", Sighting.all());
-      model.put("civilians", Civilian.all());
-      model.put("template", "templates/viewer.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
+    // get("/civilians/:id", (request, response) -> {
+    //   Map<String, Object> model = new HashMap<String, Object>();
+    //   Civilian civilian =  Civilian.find(Integer.parseInt(request.params(":id")));
+    //   model.put("user", request.session().attribute("user"));
+    //   model.put("animals", Animal.all());
+    //   model.put("endangeredAnimals", EndangeredAnimal.all());
+    //   model.put("sightings", Sighting.all());
+    //   model.put("civilians", Civilian.all());
+    //   model.put("template", "templates/viewer.vtl");
+    //   return new ModelAndView(model, layout);
+    // }, new VelocityTemplateEngine());
 
     get("/rangers/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
@@ -48,17 +48,17 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/login/civilian", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      boolean ranger = Boolean.parseBoolean(request.queryParams("ranger"));
-      String name = request.queryParams("name");
-      String phone = request.queryParams("phone");
-      Civilian civilian = new Civilian(ranger, name, phone);
-      civilian.save();
-      request.session().attribute("user", civilian);
-      response.redirect("/civilians/$civilian.getId()");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
+    // post("/login/civilian", (request, response) -> {
+    //   Map<String, Object> model = new HashMap<String, Object>();
+    //   boolean ranger = Boolean.parseBoolean(request.queryParams("ranger"));
+    //   String name = request.queryParams("name");
+    //   String phone = request.queryParams("phone");
+    //   Civilian civilian = new Civilian(ranger, name, phone);
+    //   civilian.save();
+    //   request.session().attribute("user", civilian);
+    //   response.redirect("/civilians/$civilian.getId()");
+    //   return new ModelAndView(model, layout);
+    // }, new VelocityTemplateEngine());
 
     post("/login/ranger", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
@@ -66,8 +66,15 @@ public class App {
       String name = request.queryParams("name");
       String phone = request.queryParams("phone");
       int rangerNumber = Integer.parseInt(request.queryParams("rangerNumber"));
-      Ranger ranger = new Ranger(rangerStat, name, phone, rangerNumber);
-      ranger.save();
+      Ranger ranger;
+      // = new Ranger(rangerStat, name, phone, rangerNumber);
+      try {
+        ranger = Ranger.findByRangerNumber(rangerNumber);
+      } catch (NoSuchElementException exception) {
+        ranger = new Ranger(rangerStat, name, phone, rangerNumber);
+        ranger.save();
+      }
+      // ranger.save();
       request.session().attribute("user", ranger);
       response.redirect("/rangers/"+ranger.getId());
       return new ModelAndView(model, layout);

@@ -128,7 +128,7 @@ public class AnimalTest {
   }
 
 
-  @Test //specific to animal class also need for endangeredanimal
+  @Test
   public void all_returnsAllInstancesOfAnimal_true() {
     Animal firstAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     firstAnimal.save();
@@ -140,7 +140,60 @@ public class AnimalTest {
 
   @Test
   public void find_returnsNullWhenNoAnimalFound_null() {
+    Animal firstAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    firstAnimal.save();
     assertTrue(Animal.find(999) == null);
+  }
+
+  @Test
+  public void getRangers_returnsListOfRangersInfo(){
+    Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testAnimal.save();
+    Ranger testRanger = new Ranger(false, "Randy", "802-234-9873", 1);
+    testRanger.save();
+    Sighting testSighting = new Sighting(testAnimal.getId(), testRanger.getId(), "45.472428, -121.946466");
+    testSighting.save();
+    Animal testAnimal1 = new Animal("Goose", "healthy", "Old", "brown", "white spots", "Male", false);
+    testAnimal1.save();
+    Ranger testRanger1 = new Ranger(false, "Bobby", "802-234-9873", 2);
+    testRanger1.save();
+    Sighting testSighting1 = new Sighting(testAnimal.getId(), testRanger.getId(), "45.472428, -121.946466");
+    testSighting1.save();
+    assertNotNull(testAnimal.getRangers(testAnimal.getId()));
+  }
+
+  @Test
+  public void getSightingDetials_returnsListOfSightingDetails() {
+    Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testAnimal.save();
+    Ranger testRanger = new Ranger(false, "Randy", "802-234-9873", 1);
+    testRanger.save();
+    Sighting testSighting = new Sighting(testAnimal.getId(), testRanger.getId(), "45.472428, -121.946466");
+    testSighting.save();
+    Animal testAnimal1 = new Animal("Goose", "healthy", "Old", "brown", "white spots", "Male", false);
+    testAnimal1.save();
+    Ranger testRanger1 = new Ranger(false, "Bobby", "802-234-9873", 2);
+    testRanger1.save();
+    Sighting testSighting1 = new Sighting(testAnimal.getId(), testRanger.getId(), "45.472428, -121.946466");
+    testSighting1.save();
+    assertNotNull(testAnimal.getSightingDetails(testAnimal.getId()));
+  }
+
+  @Test
+  public void getTotalSightings_returnsNumberOfSightings_int() {
+    Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testAnimal.save();
+    Ranger testRanger = new Ranger(false, "Randy", "802-234-9873", 1);
+    testRanger.save();
+    Sighting testSighting = new Sighting(testAnimal.getId(), testRanger.getId(), "45.472428, -121.946466");
+    testSighting.save();
+    Animal testAnimal1 = new Animal("Goose", "healthy", "Old", "brown", "white spots", "Male", false);
+    testAnimal1.save();
+    Ranger testRanger1 = new Ranger(false, "Bobby", "802-234-9873", 2);
+    testRanger1.save();
+    Sighting testSighting1 = new Sighting(testAnimal.getId(), testRanger.getId(), "45.472428, -121.946466");
+    testSighting1.save();
+    assertEquals((Integer)2, testAnimal.getTotalSightings(testAnimal.getId()));
   }
 
 }

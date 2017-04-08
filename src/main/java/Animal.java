@@ -58,16 +58,6 @@ public class Animal extends Wildlife {
     }
   }
 
-  // public List<Sighting> getSightings() {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "SELECT * FROM sightings WHERE animal_id=:id;";
-  //       List<Sighting> sightings = con.createQuery(sql)
-  //         .addParameter("id", id)
-  //         .executeAndFetch(Sighting.class);
-  //     return sightings;
-  //   }
-  // }
-
   @Override
   public boolean equals(Object otherAnimal) {
     if(!(otherAnimal instanceof Animal)) {
@@ -150,7 +140,7 @@ public class Animal extends Wildlife {
         .executeAndFetch(Animal.class);
     }
   }
-//add a test
+
   public static List<Ranger> getRangers(int id) {
    try (Connection con = DB.sql2o.open()) {
      String sql = "SELECT viewers.name, viewers.phone, viewers.ranger FROM viewers INNER JOIN sightings ON viewers.id = sightings.viewer_id INNER JOIN wildlife_animals ON sightings.animal_id = wildlife_animals.id WHERE wildlife_animals.id = :id;";

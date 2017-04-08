@@ -2,6 +2,7 @@ import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class Ranger extends Viewers implements Person {
   public int ranger_number;
@@ -99,20 +100,23 @@ public class Ranger extends Viewers implements Person {
         .executeUpdate();
     }
   }
-
-  public static Ranger findByPhone(String phone) {
+//add a test
+  public static Ranger findByRangerNumber(int rangerNumber) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM viewers WHERE phone = :phone;";
+      String sql = "SELECT * FROM viewers WHERE ranger_number = :rangerNumber;";
       Ranger ranger = con.createQuery(sql)
-        .addParameter("phone", phone)
+        .addParameter("rangerNumber", rangerNumber)
         .executeAndFetchFirst(Ranger.class);
+      if (ranger == null) {
+        throw new NoSuchElementException("No Ranger with this Ranger Number");
+      }
       return ranger;
     }
   }
 //add a test
   public static List<Animal> getAnimals(int id) {
    try (Connection con = DB.sql2o.open()) {
-     String sql = "SELECT wildlife_animals.name, wildlife_animals.description, wildlife_animals.health, wildlife_animals.gender FROM wildlife_animals INNER JOIN sightings ON wildlife_animals.id = sightings.animal_id INNER JOIN viewers ON sightings.viewer_id = viewers.id WHERE viewer_id = :id;";
+     String sql = "SELECT wildlife_animals.name, wildlife_animals.description, wildlife_animals.health, wildlife_animals.gender, wildlife_animals.endangered FROM wildlife_animals INNER JOIN sightings ON wildlife_animals.id = sightings.animal_id INNER JOIN viewers ON sightings.viewer_id = viewers.id WHERE viewer_id = :id;";
      return con.createQuery(sql)
        .addParameter("id", id)
        .executeAndFetch(Animal.class);

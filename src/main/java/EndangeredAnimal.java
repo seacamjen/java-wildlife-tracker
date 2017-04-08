@@ -57,16 +57,6 @@ public class EndangeredAnimal extends Wildlife {
     }
   }
 
-  // public List<Sighting> getSightings() {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "SELECT * FROM sightings WHERE animal_id=:id;";
-  //       List<Sighting> sightings = con.createQuery(sql)
-  //         .addParameter("id", id)
-  //         .executeAndFetch(Sighting.class);
-  //     return sightings;
-  //   }
-  // }
-
   @Override
   public boolean equals(Object otherEndangeredAnimal) {
     if(!(otherEndangeredAnimal instanceof EndangeredAnimal)) {
@@ -156,6 +146,15 @@ public class EndangeredAnimal extends Wildlife {
      return con.createQuery(sql)
        .addParameter("id", id)
        .executeAndFetch(Ranger.class);
+    }
+  }
+
+  public static List<Sighting> getSightingDetails(int id) {
+   try (Connection con = DB.sql2o.open()) {
+     String sql = "SELECT sightings.location, sightings.time FROM sightings INNER JOIN wildlife_animals ON sightings.animal_id = wildlife_animals.id WHERE wildlife_animals.id = :id;";
+     return con.createQuery(sql)
+       .addParameter("id", id)
+       .executeAndFetch(Sighting.class);
     }
   }
 

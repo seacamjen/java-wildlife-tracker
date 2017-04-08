@@ -3,29 +3,35 @@
 <div class="row">
   <div class="col-md-3">
     <h4>Here are all your sigtings:</h4>
+    <p><img src="/images/sad.gif" alt="sad face"> = Endangered Animal</p>
   </div>
   <div class="col-md-9">
-    #foreach ($animal in $ranger.getAnimals($ranger.getId()))
     <div class="row">
-      <div class="col-md-3">
-        <div class="panel panel-success">
-          <div class="panel-heading">
-            <h4>$animal.getName()
-              #if ($animal.getEndangered())
-              <img src="/images/sad.gif" alt="sad face for endangered animal">
-              #end
-            </h4>
-          </div>
-          <div class="panel-body">
-            <p>
-              Description: $animal.getDescription()
-              Health: $animal.getHealth()
-              Gender: $animal.getGender()
-            </p>
+      #foreach ($animal in $ranger.getAnimals($ranger.getId()))
+        <div class="col-md-3">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h5>$animal.getName()
+                #if ($animal.getEndangered())
+                  <img src="/images/sad.gif" alt="sad face">
+                #end
+              </h5>
+            </div>
+            <div class="panel-body">
+              <p>
+              Description: $animal.getDescription()<br>
+              Health: $animal.getHealth()<br>
+              Gender: $animal.getGender()<br>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      #end
     </div>
   </div>
 </div>
+
+
+
+
 <!--viewer.vtl-->

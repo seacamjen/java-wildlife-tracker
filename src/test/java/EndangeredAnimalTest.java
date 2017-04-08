@@ -127,22 +127,7 @@ public class EndangeredAnimalTest {
     assertEquals("broken foot", EndangeredAnimal.find(testEndangeredAnimal.getId()).getDescription());
   }
 
-  // @Test
-  // public void getSightings_returnsAllSightingsForSpecificWildlife_true() {
-  //   EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
-  //   testEndangeredAnimal.save();
-  //   Sighting testSighting1 = new Sighting(testEndangeredAnimal.getId(), "45.472428, -121.946466", "Ranger Avery");
-  //   testSighting1.save();
-  //   Sighting testSighting2 = new Sighting(testEndangeredAnimal.getId(), "47.472428, -123.946466", "Ranger Charles");
-  //   testSighting2.save();
-  //   Sighting testSighting3 = new Sighting(900, "47.472428, -123.946466", "Ranger Charles");
-  //   testSighting3.save();
-  //   Sighting [] sightings = new Sightings [] {testSighting1, testSighting2};
-  //   assertTrue(EndangeredAnimal.getSightings().containsAll(Arrays.asList(sightings)));
-  //   assertFalse(EndangeredAnimal.getSightings().contains(testSighting3));
-  // }
-
-  @Test //specific to endangeredEndangeredAnimals
+  @Test
   public void all_returnsAllInstancesOfEndangeredEndangeredAnimal_true() {
     EndangeredAnimal firstEndangeredAnimal = new EndangeredAnimal("Deer", "healthy", "3", "brown", "white spots", "Male", true);
     firstEndangeredAnimal.save();
@@ -150,5 +135,56 @@ public class EndangeredAnimalTest {
     secondEndangeredAnimal.save();
     assertEquals(true, EndangeredAnimal.all().get(0).equals(firstEndangeredAnimal));
     assertEquals(true, EndangeredAnimal.all().get(1).equals(secondEndangeredAnimal));
+  }
+
+  @Test
+  public void getRangers_returnsListOfRangersInfo(){
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testEndangeredAnimal.save();
+    Ranger testRanger = new Ranger(false, "Randy", "802-234-9873", 1);
+    testRanger.save();
+    Sighting testSighting = new Sighting(testEndangeredAnimal.getId(), testRanger.getId(), "45.472428, -121.946466");
+    testSighting.save();
+    EndangeredAnimal testEndangeredAnimal1 = new EndangeredAnimal("Goose", "healthy", "Old", "brown", "white spots", "Male", false);
+    testEndangeredAnimal1.save();
+    Ranger testRanger1 = new Ranger(false, "Bobby", "802-234-9873", 2);
+    testRanger1.save();
+    Sighting testSighting1 = new Sighting(testEndangeredAnimal.getId(), testRanger.getId(), "45.472428, -121.946466");
+    testSighting1.save();
+    assertNotNull(testEndangeredAnimal.getRangers(testEndangeredAnimal.getId()));
+  }
+
+  @Test
+  public void getSightingDetials_returnsListOfSightingDetails() {
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testEndangeredAnimal.save();
+    Ranger testRanger = new Ranger(false, "Randy", "802-234-9873", 1);
+    testRanger.save();
+    Sighting testSighting = new Sighting(testEndangeredAnimal.getId(), testRanger.getId(), "45.472428, -121.946466");
+    testSighting.save();
+    EndangeredAnimal testEndangeredAnimal1 = new EndangeredAnimal("Goose", "healthy", "Old", "brown", "white spots", "Male", false);
+    testEndangeredAnimal1.save();
+    Ranger testRanger1 = new Ranger(false, "Bobby", "802-234-9873", 2);
+    testRanger1.save();
+    Sighting testSighting1 = new Sighting(testEndangeredAnimal.getId(), testRanger.getId(), "45.472428, -121.946466");
+    testSighting1.save();
+    assertNotNull(testEndangeredAnimal.getSightingDetails(testEndangeredAnimal.getId()));
+  }
+
+  @Test
+  public void getTotalSightings_returnsNumberOfSightings_int() {
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testEndangeredAnimal.save();
+    Ranger testRanger = new Ranger(false, "Randy", "802-234-9873", 1);
+    testRanger.save();
+    Sighting testSighting = new Sighting(testEndangeredAnimal.getId(), testRanger.getId(), "45.472428, -121.946466");
+    testSighting.save();
+    EndangeredAnimal testEndangeredAnimal1 = new EndangeredAnimal("Goose", "healthy", "Old", "brown", "white spots", "Male", false);
+    testEndangeredAnimal1.save();
+    Ranger testRanger1 = new Ranger(false, "Bobby", "802-234-9873", 2);
+    testRanger1.save();
+    Sighting testSighting1 = new Sighting(testEndangeredAnimal.getId(), testRanger.getId(), "45.472428, -121.946466");
+    testSighting1.save();
+    assertEquals((Integer)2, testEndangeredAnimal.getTotalSightings(testEndangeredAnimal.getId()));
   }
 }
