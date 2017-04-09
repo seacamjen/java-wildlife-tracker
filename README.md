@@ -8,7 +8,7 @@ The Forest Service is considering a proposal from a timber company to clearcut a
 
 ### Bugs / Issues
 
-There is functional code set up for another Civilian class to sign in but it has not been implemented.
+Update and delete functionality not implemented for any class on the front end.
 
 ### Setup
 
