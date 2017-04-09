@@ -1,37 +1,67 @@
 <!--viewer.vtl-->
-<h1>Welcome $ranger.getName()</h1>
-<div class="row">
-  <div class="col-md-3">
-    <h4>Here are all your sigtings:</h4>
-    <p><img src="/images/sad.gif" alt="sad face"> = Endangered Animal</p>
-  </div>
-  <div class="col-md-9">
-    <div class="row">
-      #foreach ($animal in $ranger.getAnimals($ranger.getId()))
-        <div class="col-md-3">
-          <div class="panel panel-success">
-            <div class="panel-heading">
-              <h5>$animal.getName()
-                #if ($animal.getEndangered())
-                  <img src="/images/sad.gif" alt="sad face">
-                #end
-              </h5>
-            </div>
-            <div class="panel-body">
-              <p>
-              Description: $animal.getDescription()<br>
-              Health: $animal.getHealth()<br>
-              Gender: $animal.getGender()<br>
-              </p>
+#if ($ranger.getRanger())
+  <h1>Welcome $ranger.getName()</h1>
+  <div class="row">
+    <div class="col-md-3">
+      <h4>Here are all your sigtings:</h4>
+      <p><img src="/images/sad.gif" alt="sad face"> = Endangered Animal</p>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        #foreach ($animal in $ranger.getAnimals($ranger.getId()))
+          <div class="col-md-3">
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h5>$animal.getName()
+                  #if ($animal.getEndangered())
+                    <img src="/images/sad.gif" alt="sad face">
+                  #end
+                </h5>
+              </div>
+              <div class="panel-body">
+                <p>
+                Description: $animal.getDescription()<br>
+                Health: $animal.getHealth()<br>
+                Gender: $animal.getGender()<br>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      #end
+        #end
+      </div>
     </div>
   </div>
-</div>
-
-
-
-
+#else
+  <h1>Welcome $civilian.getName()</h1>
+  <div class="row">
+    <div class="col-md-3">
+      <h4>Here are all your sigtings:</h4>
+      <p><img src="/images/sad.gif" alt="sad face"> = Endangered Animal</p>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        #foreach ($animal in $civilian.getAnimals($civilian.getId()))
+          <div class="col-md-3">
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h5>$animal.getName()
+                  #if ($animal.getEndangered())
+                    <img src="/images/sad.gif" alt="sad face">
+                  #end
+                </h5>
+              </div>
+              <div class="panel-body">
+                <p>
+                Description: $animal.getDescription()<br>
+                Health: $animal.getHealth()<br>
+                Gender: $animal.getGender()<br>
+                </p>
+              </div>
+            </div>
+          </div>
+        #end
+      </div>
+    </div>
+  </div>
+#end
 <!--viewer.vtl-->

@@ -1,6 +1,7 @@
 import org.sql2o.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Civilian extends Viewers implements Person {
   public static final boolean CIVILIAN_RANGER_STATUS = false;
@@ -87,6 +88,9 @@ public class Civilian extends Viewers implements Person {
         .addParameter("phone", phone)
         .throwOnMappingFailure(false)
         .executeAndFetchFirst(Civilian.class);
+      if (civilian == null) {
+        throw new NoSuchElementException("No Civilian with this phone number");
+      }
       return civilian;
     }
   }
@@ -100,6 +104,15 @@ public class Civilian extends Viewers implements Person {
         .addParameter("phone", phone)
         .throwOnMappingFailure(false)
         .executeUpdate();
+    }
+  }
+
+  public static List<Animal> getAnimals(int id) {
+   try (Connection con = DB.sql2o.open()) {
+     String sql = "SELECT wildlife_animals.name, wildlife_animals.description, wildlife_animals.health, wildlife_animals.gender, wildlife_animals.endangered FROM wildlife_animals INNER JOIN sightings ON wildlife_animals.id = sightings.animal_id INNER JOIN viewers ON sightings.viewer_id = viewers.id WHERE viewer_id = :id;";
+     return con.createQuery(sql)
+       .addParameter("id", id)
+       .executeAndFetch(Animal.class);
     }
   }
 }

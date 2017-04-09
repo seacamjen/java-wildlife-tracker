@@ -104,7 +104,7 @@ public class EndangeredAnimalTest {
   }
 
   @Test
-  public void update_updatesHealthAttribute_true() {
+  public void updatehealth_updatesHealthAttribute_true() {
     EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     testEndangeredAnimal.save();
     testEndangeredAnimal.updateHealth("ill");
@@ -112,7 +112,7 @@ public class EndangeredAnimalTest {
   }
 
   @Test
-  public void update_updatesAgeAttribute_true() {
+  public void updateAge_updatesAgeAttribute_true() {
     EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     testEndangeredAnimal.save();
     testEndangeredAnimal.updateAge("Adult");
@@ -120,7 +120,7 @@ public class EndangeredAnimalTest {
   }
 
   @Test
-  public void update_updatesDescriptionAttribute_true() {
+  public void updateDescription_updatesDescriptionAttribute_true() {
     EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
     testEndangeredAnimal.save();
     testEndangeredAnimal.updateDescription("broken foot");

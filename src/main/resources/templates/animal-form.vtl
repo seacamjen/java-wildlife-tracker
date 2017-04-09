@@ -1,51 +1,107 @@
-<h1>Add Animal to Database</h1>
+<!-- animal-form.vtl -->
+#if ($ranger.getRanger())
+  <h1>Add Animal to Database</h1>
 
-<div class="row">
-  <div class="col-md-5 col-md-offset-3">
-    <form class="form-group" action="/animal/new" method="post">
-      <input id="rangerId" name="rangerId" type="hidden" value="$ranger.getId()">
-      <div class="form-group">
-        <label>Animal Species</label>
-        <input type="text" name="name">
-      </div>
-      <div class="form-group">
-        <label>Health</label>
-        <select name="health">
-          <option>Ill</option>
-          <option>Okay</option>
-          <option>Healthy</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Age</label>
-        <select name="age">
-          <option>Newborn</option>
-          <option>Young</option>
-          <option>Adult</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Color</label>
-        <input type="text" name="color">
-      </div>
-      <div class="form-group">
-        <label>Description</label>
-        <input type="text" name="description">
-      </div>
-      <div class="form-group">
-        <label>Gender</label>
-        <select  name="gender">
-          <option>Male</option>
-          <option>Female</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Endangered?</label>
-        <input type="checkbox" name="endangered">
-      </div>
-      <div class="form-group">
-        <button class="btn btn-default" type="submit">Add Animal</button>
-      </div>
-    </form>
+  <div class="row">
+    <div class="col-md-5 col-md-offset-3">
+      <form class="form-group" action="/animal/new" method="post">
+        <input id="rangerId" name="rangerId" type="hidden" value="$ranger.getId()">
+        <div class="form-group">
+          <label>Animal Species</label>
+          <input type="text" name="name">
+        </div>
+        <div class="form-group">
+          <label>Health</label>
+          <select name="health">
+            <option>Ill</option>
+            <option>Okay</option>
+            <option>Healthy</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Age</label>
+          <select name="age">
+            <option>Newborn</option>
+            <option>Young</option>
+            <option>Adult</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Color</label>
+          <input type="text" name="color">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" name="description">
+        </div>
+        <div class="form-group">
+          <label>Gender</label>
+          <select  name="gender">
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Endangered?</label>
+          <input type="checkbox" name="endangered">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-default" type="submit">Add Animal</button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
+#else
+  <h1>Add Animal to Database</h1>
+
+  <div class="row">
+    <div class="col-md-5 col-md-offset-3">
+      <form class="form-group" action="/animal/new" method="post">
+        <input id="civilianId" name="civilianId" type="hidden" value="$civilian.getId()">
+        <div class="form-group">
+          <label>Animal Species</label>
+          <input type="text" name="name">
+        </div>
+        <div class="form-group">
+          <label>Health</label>
+          <select name="health">
+            <option>Ill</option>
+            <option>Okay</option>
+            <option>Healthy</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Age</label>
+          <select name="age">
+            <option>Newborn</option>
+            <option>Young</option>
+            <option>Adult</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Color</label>
+          <input type="text" name="color">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" name="description">
+        </div>
+        <div class="form-group">
+          <label>Gender</label>
+          <select  name="gender">
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Endangered?</label>
+          <input type="checkbox" name="endangered">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-default" type="submit">Add Animal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+#end
+<!-- animal-form.vtl -->

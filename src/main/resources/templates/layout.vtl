@@ -13,7 +13,11 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/">Home</a>
+          #if ($user.getRanger() == false)
+            <a class="navbar-brand" href="/sightings">Home</a>
+          #else
+            <a class="navbar-brand" href="/">Home</a>
+          #end
         </div>
         <ul class="nav navbar-nav">
           #if($user.getRanger())
@@ -21,6 +25,11 @@
             <li><a href="/rangers/$user.getId()/engangeredsighting/new">Add Endangered Animal Sighting</a></li>
             <li><a href="/rangers/$user.getId()/sighting/new">Add Animal Sighting</a></li>
             <li><a href="/animal/new">Add Animal to System</a></li>
+          #elseif ($user.getRanger() == false)
+          <li><a href="/civilians/$user.getId()">Manage Sightings</a></li>
+          <li><a href="/civilians/$user.getId()/engangeredsighting/new">Add Endangered Animal Sighting</a></li>
+          <li><a href="/civilians/$user.getId()/sighting/new">Add Animal Sighting</a></li>
+          <li><a href="/animal/new">Add Animal to System</a></li>
           #end
         </ul>
         #if($user)

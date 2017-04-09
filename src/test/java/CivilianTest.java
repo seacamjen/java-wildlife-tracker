@@ -99,4 +99,21 @@ public class CivilianTest {
     assertEquals("Randy Joe", Civilian.find(testCivilian.getId()).getName());
     assertEquals("909-234-2212", Civilian.find(testCivilian.getId()).getPhone());
   }
+
+  @Test
+  public void getAnimals_returnsListOfRangersInfo(){
+    Animal testAnimal = new Animal("Deer", "healthy", "3", "brown", "white spots", "Male", false);
+    testAnimal.save();
+    Ranger testRanger = new Ranger(false, "Randy", "802-234-9873", 1);
+    testRanger.save();
+    Sighting testSighting = new Sighting(testAnimal.getId(), testRanger.getId(), "45.472428, -121.946466");
+    testSighting.save();
+    Animal testAnimal1 = new Animal("Goose", "healthy", "Old", "brown", "white spots", "Male", false);
+    testAnimal1.save();
+    Ranger testRanger1 = new Ranger(false, "Bobby", "802-234-9873", 2);
+    testRanger1.save();
+    Sighting testSighting1 = new Sighting(testAnimal.getId(), testRanger.getId(), "45.472428, -121.946466");
+    testSighting1.save();
+    assertNotNull(testRanger.getAnimals(testRanger.getId()));
+  }
 }

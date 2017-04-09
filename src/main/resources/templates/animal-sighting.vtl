@@ -1,18 +1,37 @@
 <!--animal-sighting.vtl-->
-<h3> Report Non-Endangered Animal Sighting </h3>
-<form action="/rangers/$ranger.getId()/sighting/new" method="post">
-  <input id="rangerId" name="rangerId" type="hidden" value="$ranger.getId()">
-  #if($animals.size() >= 0)
-    <label>Select Animal</label>
-    <select name="animalSelected">
-      #foreach($animal in $animals)
-        <option value="$animal.getId()">$animal.getName()</option>
-      #end
-    </select>
+#if ($ranger.getRanger())
+  <h3> Report Non-Endangered Animal Sighting </h3>
+  <form action="/rangers/$ranger.getId()/sighting/new" method="post">
+    <input id="rangerId" name="rangerId" type="hidden" value="$ranger.getId()">
+    #if($animals.size() >= 0)
+      <label>Select Animal</label>
+      <select name="animalSelected">
+        #foreach($animal in $animals)
+          <option value="$animal.getId()">$animal.getName()</option>
+        #end
+      </select>
 
-    <label>Location</label>
-    <input type="text" name="latLong">
-    <button type="submit">Submit Report</button>
-  #end
-</form>
+      <label>Location</label>
+      <input type="text" name="latLong">
+      <button type="submit">Submit Report</button>
+    #end
+  </form>
+#else
+  <h3> Report Non-Endangered Animal Sighting </h3>
+  <form action="/civilians/$civilian.getId()/sighting/new" method="post">
+    <input id="civilianId" name="civilianId" type="hidden" value="$civilian.getId()">
+    #if($animals.size() >= 0)
+      <label>Select Animal</label>
+      <select name="animalSelected">
+        #foreach($animal in $animals)
+          <option value="$animal.getId()">$animal.getName()</option>
+        #end
+      </select>
+
+      <label>Location</label>
+      <input type="text" name="latLong">
+      <button type="submit">Submit Report</button>
+    #end
+  </form>
+#end
 <!--animal-sighting.vtl-->

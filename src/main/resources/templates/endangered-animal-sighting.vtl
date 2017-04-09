@@ -1,18 +1,37 @@
 <!-- endangered-animal-sighting.vtl -->
-<h3> Report Endangered Animal Sighting </h3>
-<form action="/rangers/$ranger.getId()/endangeredsighting/new" method="post">
-  <input id="rangerId" name="rangerId" type="hidden" value="$ranger.getId()">
-  #if($endangeredAnimals.size() >= 0)
-    <label>Select Endangered Animal</label>
-    <select name="endangeredAnimalSelected">
-      #foreach($endangered_animal in $endangeredAnimals)
-        <option value="$endangered_animal.getId()">$endangered_animal.getName()</option>
-      #end
-    </select>
+#if ($ranger.getRanger())
+  <h3> Report Endangered Animal Sighting </h3>
+  <form action="/rangers/$ranger.getId()/endangeredsighting/new" method="post">
+    <input id="rangerId" name="rangerId" type="hidden" value="$ranger.getId()">
+    #if($endangeredAnimals.size() >= 0)
+      <label>Select Endangered Animal</label>
+      <select name="endangeredAnimalSelected">
+        #foreach($endangered_animal in $endangeredAnimals)
+          <option value="$endangered_animal.getId()">$endangered_animal.getName()</option>
+        #end
+      </select>
 
-    <label>Location</label>
-    <input type="text" name="latLong">
-    <button type="submit">Submit Report</button>
-  #end
-</form>
+      <label>Location</label>
+      <input type="text" name="latLong">
+      <button type="submit">Submit Report</button>
+    #end
+  </form>
+#else
+  <h3> Report Endangered Animal Sighting </h3>
+  <form action="/civilians/$civilian.getId()/endangeredsighting/new" method="post">
+    <input id="civilianId" name="civilianId" type="hidden" value="$civilian.getId()">
+    #if($endangeredAnimals.size() >= 0)
+      <label>Select Endangered Animal</label>
+      <select name="endangeredAnimalSelected">
+        #foreach($endangered_animal in $endangeredAnimals)
+          <option value="$endangered_animal.getId()">$endangered_animal.getName()</option>
+        #end
+      </select>
+
+      <label>Location</label>
+      <input type="text" name="latLong">
+      <button type="submit">Submit Report</button>
+    #end
+  </form>
+#end
 <!-- endangered-animal-sighting.vtl -->

@@ -100,7 +100,7 @@ public class Ranger extends Viewers implements Person {
         .executeUpdate();
     }
   }
-//add a test
+
   public static Ranger findByRangerNumber(int rangerNumber) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM viewers WHERE ranger_number = :rangerNumber;";
